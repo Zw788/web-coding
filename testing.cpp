@@ -1,3 +1,10 @@
+/*
+"stage changes" , no, push directly
+"commit and sync" , always
+*/
+
+
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -10,6 +17,6 @@ using namespace std;
 int main()
 {
 	cout << "Hello, World!" << endl;
-
+	
 	return 0;
 }
