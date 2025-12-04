@@ -30,10 +30,26 @@ int main()
 		return 1;
 	}
 
+	int res=0;
+	int max1;
+	int max2;
+
 	string line;
 	while (getline(myfile,line)) {
-		cout << line << "\n";
+		max1=*(line.end()-2)-'0';
+		max2=*(line.end()-1)-'0';
+		for (auto i= line.rbegin()+2; i!=line.rend();++i) {
+			if ((*i - '0') >= max1) {
+				max2=(max1 > max2)? max1: max2;
+				max1=(*i - '0');
+			} 
+		}
+		res += max1*10+max2;
 	}
+	cout << res << "\n";
+
+
+
 
 	myfile.close();
 	/////////////////////////////////////////////////////////
