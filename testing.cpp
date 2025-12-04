@@ -30,26 +30,33 @@ int main()
 		return 1;
 	}
 
-	int res=0;
-	int max1;
-	int max2;
+	long long res=0;
+	vector<int> jolt;
+
+	int n= 12-1;
 
 	string line;
-	while (getline(myfile,line)) {
-		max1=*(line.end()-2)-'0';
-		max2=*(line.end()-1)-'0';
-		for (auto i= line.rbegin()+2; i!=line.rend();++i) {
-			if ((*i - '0') >= max1) {
-				max2=(max1 > max2)? max1: max2;
-				max1=(*i - '0');
+	while (getline(myfile,line)){
+		jolt={};
+		for (auto i=line.end()-(n+1);i!=line.end();++i) {
+			jolt.push_back(*i - '0');
+		}
+
+		for (auto i= line.rbegin()+(n+1); i!=line.rend();++i) {
+			if ((*i - '0') >= jolt[0]) {
+				int t=0;
+				while (jolt[t] >= jolt[t+1] && t <= n) {++t;}		
+				jolt.erase(jolt.begin()+t);
+				jolt.insert(jolt.begin(),(*i - '0'));
 			} 
 		}
-		res += max1*10+max2;
+		for (auto i=n;i>=0;--i) {
+			res+=jolt[n-i]*pow(10,i);
+		}
+
 	}
+
 	cout << res << "\n";
-
-
-
 
 	myfile.close();
 	/////////////////////////////////////////////////////////
